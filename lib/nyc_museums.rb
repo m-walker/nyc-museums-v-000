@@ -1,5 +1,8 @@
-require "nyc_museums/version"
+require 'open-uri'
+require 'nokogiri'
+require 'pry'
 
-module NycMuseums
-  # Your code goes here...
-end
+require_relative "./nyc_museums/version"
+require_relative "./nyc_museums/cli"
+
+
