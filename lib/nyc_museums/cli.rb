@@ -7,35 +7,45 @@ class NycMuseums::CLI
   end
 
   def list_museums
-    puts <<-DOC.gsub /^\s*/, ''
-      NYC's Museums:
-      1. Alice Austen House Museum
-      2. American Folk Art Museum
-      3. American Museum of Natural History
-      4. American Museum of the Moving Image
-      5. American Numismatic Society
-      6. Americas Society
-      7. Anne Frank
-      8. Artists Space
-      9. Asia Society and Museum
-      etc
-    DOC
+    ### Avi's code:
+    #
+    #
+    #@deals = DailyDeal::Deal.today
+    #@deals.each.with_index(1) do |deal, i|
+    #puts "#{i}. #{deal.name} - #{deal.price} - #{deal.availability}"
+    #
+    ###
+
+    ### my brainstorming
+    #
+    puts "NYC's Museums:"
+    NycMuseums::Museums.list_all
   end
 
   def menu
-    puts ""
-    puts "List the number of the museum you are interested in visiting, or type 'list' to see the list again or type exit:"
-    puts ""
+    puts 
+    puts "Please do one of the following:"
+    puts "1) list the number of the museum you are interested in visiting"
+    puts "2) type 'list' to see the list again"
+    puts "3) type exit"
+    puts 
+
     input = nil
     while input != "exit"
       input = gets.strip
       case input
       when  "1"
         puts "more info on Alice Austen"
+        puts "- - - - - "
+        puts 
         puts "List the number of the museum you are interested in visiting, or type 'list' to see the list again or type exit:"
+        puts
       when "2"
         puts "more info on American Folk"
+        puts "- - - - - "
+        puts
         puts "List the number of the museum you are interested in visiting, or type 'list' to see the list again or type exit:"
+        puts
       when "list"
         list_museums
       else
