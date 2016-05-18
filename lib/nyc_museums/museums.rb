@@ -1,5 +1,5 @@
 class NycMuseums::Museums
-  attr_accessor :name, :url
+  attr_accessor :name, :url, :info, :description
   @@all = []
 
   def initialize(name = nil, url)
@@ -21,8 +21,11 @@ class NycMuseums::Museums
   def self.create_by_scraping
     array_of_museum_properties = Scraper.scrape_museum_page
     array_of_museum_properties.each do |x|
-      self.new(x[:name], x[:url])
+      self.new(x[:name], "https://ny.com/museums/#{x[:url]}")
     end
+  end
+
+  def self.add_details
   end
 
 end
