@@ -2,8 +2,8 @@
 
 require './lib/nyc_museums'
 
-NycMuseums::Museums.try_2
+#NycMuseums::CLI.list_museums
 #NycMuseums::Museums.create_by_scraping
 #NycMuseums::Museums.list_all
 #NycMuseums::Museums.all
-#puts NycMuseums::CLI.new.call
+puts NycMuseums::CLI.new.call

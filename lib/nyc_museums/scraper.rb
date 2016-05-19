@@ -45,7 +45,7 @@ class Scraper
     doc = Nokogiri::HTML(html)
     museum_details_array = []
 
-    info = doc.css(".col-md-3").text.gsub("\n      ", "").gsub("    ", "\n").gsub("   ", " ").gsub("Website", "Website:\n").gsub("Hours\nHours", "Hours:").gsub("Admission\nAdmission", "Admission:").gsub("Address & Phone", "\nAddress:").gsub("  P: ", "\nPhone:\n")
+    info = doc.css(".col-md-3").text.gsub("\n      ", "").gsub("    ", "\n").gsub("   ", " ").gsub("Website", "Website:\n").gsub("Hours\nHours", "Hours:").gsub("Admission\nAdmission", "Admission:").gsub("Address & Phone", "\nAddress:").gsub("  P: ", "\nPhone:\n").gsub("Problems?\n", "")
     description = doc.css(".col-md-9 .lead").text.gsub("      ", "").gsub("\n", " ")
     museum_details_array << {info: info, description: description}
 

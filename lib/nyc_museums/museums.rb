@@ -75,18 +75,15 @@ class NycMuseums::Museums
     #self.add_details_one(Scraper.scrape_individual_page(alice_austen_url))
   end
 
-  def self.try_2
-    self.create_by_scraping
-    self.all.each do |x|
-      hash = Scraper.scrape_individual_page(x.url)
-      x.info = hash[0][:info]
-      x.description = hash[0][:description]
-    end
-    puts self.all.first.name
-    puts 
-    puts self.all.first.info
-    puts "Description:"
-    puts self.all.first.description
+  def self.add_these_details(number)
+    museum_url = self.all[number].url
+    hash = Scraper.scrape_individual_page(museum_url)
+    self.all[number].info = hash[0][:info]
+    self.all[number].description = hash[0][:description]
+    test = self.all[number]
+      #hash = Scraper.scrape_individual_page(x.url)
+      #x.info = hash[0][:info]
+      #x.description = hash[0][:description]
   end
 
 end
