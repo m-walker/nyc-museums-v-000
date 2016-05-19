@@ -40,16 +40,16 @@ class Scraper
     all_museums_array
   end
 
-  def self.scrape_individual_page
-    html = open("https://ny.com/museums/alice.austen.house.museum.and.garden.html")
+  def self.scrape_individual_page(museum_url)
+    html = open(museum_url)
     doc = Nokogiri::HTML(html)
     museum_details_array = []
 
-    info = doc.css(".col-md-3").text.gsub("\n      ", "\n")
-    description = doc.css(".col-md-9 .lead").text
+    info = doc.css(".col-md-3").text.gsub("\n      ", "").gsub("    ", "\n").gsub("   ", " ").gsub("Website", "Website:\n").gsub("Hours\nHours", "Hours:").gsub("Admission\nAdmission", "Admission:").gsub("Address & Phone", "\nAddress:").gsub("  P: ", "\nPhone:\n")
+    description = doc.css(".col-md-9 .lead").text.gsub("      ", "").gsub("\n", " ")
     museum_details_array << {info: info, description: description}
 
-    puts museum_details_array.first[:info]
+    museum_details_array
 
 
     #puts "museum info: #{museum_details_array[:info]}"

@@ -2,7 +2,7 @@
 
 require './lib/nyc_museums'
 
-Scraper.scrape_individual_page
+NycMuseums::Museums.try
 #NycMuseums::Museums.create_by_scraping
 #NycMuseums::Museums.list_all
 #NycMuseums::Museums.all
