@@ -18,8 +18,6 @@ class NycMuseums::CLI
     puts "Enter your selection below:"
     initial_selection = gets.strip.to_i
 
-
-    puts "NYC's Museums:"
     NycMuseums::Museums.create_by_scraping
     if initial_selection == 1
       NycMuseums::Museums.list_first_half
@@ -28,7 +26,7 @@ class NycMuseums::CLI
     elsif initial_selection == 3
       NycMuseums::Museums.list_all
     else
-      puts "We didn't get that. Please enter the number 1, 2 or 3 and then press enter."
+      puts "We didn't get that. Please enter the number 1, 2, or 3 and then press enter."
     end
   end
 
@@ -38,7 +36,7 @@ class NycMuseums::CLI
 
   def menu
     puts 
-    puts "Please do one of the following:"
+    puts "You can do any of the following:"
     puts "1) list the number of the museum you are interested in visiting"
     puts "2) type 'list' to see a exhaustive list of museums"
     puts "3) type exit if you want to leave the program"
@@ -61,7 +59,7 @@ class NycMuseums::CLI
       elsif input == "list"
         list_museums
       else
-        puts "We're sorry. We didn't get that. Please type a number, 'list' or 'exit' and then press enter again."
+        puts "We're sorry. We didn't get that. Please type a number, 'list' or 'exit' and then press enter again." unless input == "exit"
       end
     end
   end

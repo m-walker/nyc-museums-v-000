@@ -13,12 +13,14 @@ class NycMuseums::Museums
   end
 
   def self.list_all
+    puts "NYC's Museums:"
     self.all.each.with_index(1) do |museum, i|
       puts "#{i}. #{museum.name}"
     end
   end
 
   def self.list_first_half
+    puts "Some of NYC's Museums:"
     self.all.each.with_index(1) do |museum, i|
       if i <= 45
         puts "#{i}. #{museum.name}"
@@ -27,6 +29,7 @@ class NycMuseums::Museums
   end
 
   def self.list_second_half
+    puts "Some of NYC's Museums:"
     self.all.each.with_index(1) do |museum, i|
       if i >= 45
         puts "#{i}. #{museum.name}"
