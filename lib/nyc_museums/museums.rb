@@ -18,6 +18,22 @@ class NycMuseums::Museums
     end
   end
 
+  def self.list_first_half
+    self.all.each.with_index(1) do |museum, i|
+      if i <= 45
+        puts "#{i}. #{museum.name}"
+      end
+    end
+  end
+
+  def self.list_second_half
+    self.all.each.with_index(1) do |museum, i|
+      if i >= 45
+        puts "#{i}. #{museum.name}"
+      end
+    end
+  end
+
   def self.create_by_scraping
     array_of_museum_properties = Scraper.scrape_museum_page
     array_of_museum_properties.each do |x|
@@ -25,65 +41,11 @@ class NycMuseums::Museums
     end
   end
 
-  def self.add_details
-    #array_of_museum_info_and_description = Scraper.scrape_individual_page(museum_url)
-
-    #start with the array of all the museums I have
-    #get their url, feed it to that Scraper method
-    #save the details in the array
-    #(new method) print out all the details for the user
-    
-    # Move to the cli method self.create_by_scraping
-    self.all.each do |x|
-      museum_info_and_descriptions = Scraper.scrape_individual_page(x.url)
-        x.info = museum_info_and_descriptions[:info]
-        binding.pry
-        x.description = museum_info_and_descriptions[:description]
-        binding.pry
-      end
-
-    #first testing
-    puts self.all.first
-        
-  end
-
-  def self.add_details_one(info_and_descriptions_hash)
-    info_and_descriptions_hash[0][:info]
-    info_and_descriptions_hash[0][:description]
-
-
-    #info_and_descriptions_hash.each do |key, value|
-    #  self.send("#{key}=", value)
-  end
-
-  def self.try
-    self.create_by_scraping
-    alice_austen_url = self.all.first.url
-    hash = Scraper.scrape_individual_page(alice_austen_url)
-    self.add_details_one(hash)
-    #binding.pry
-    self.all.first.info = hash[0][:info]
-    self.all.first.description = hash[0][:description]
-
-    puts self.all.first.name
-    puts 
-    puts self.all.first.info
-    puts "Description:"
-    puts self.all.first.description
-    
-
-    #self.add_details_one(Scraper.scrape_individual_page(alice_austen_url))
-  end
-
   def self.add_these_details(number)
     museum_url = self.all[number].url
     hash = Scraper.scrape_individual_page(museum_url)
     self.all[number].info = hash[0][:info]
     self.all[number].description = hash[0][:description]
-    test = self.all[number]
-      #hash = Scraper.scrape_individual_page(x.url)
-      #x.info = hash[0][:info]
-      #x.description = hash[0][:description]
   end
 
 end
