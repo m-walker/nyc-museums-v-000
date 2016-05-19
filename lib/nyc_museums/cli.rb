@@ -1,14 +1,18 @@
 class NycMuseums::CLI
 
   def call
-    list_museums
+    create_and_list_museums
     menu_2
     goodbye
   end
 
-  def list_museums
+  def create_and_list_museums
     puts "NYC's Museums:"
     NycMuseums::Museums.create_by_scraping
+    NycMuseums::Museums.list_all
+  end
+
+  def list_museums
     NycMuseums::Museums.list_all
   end
 
@@ -37,7 +41,7 @@ class NycMuseums::CLI
         puts "List the number of the museum you are interested in visiting, or type 'list' to see the list again or type exit:"
         puts
       when "list"
-        list_museums
+        self.
       else
         puts "Not sure what you want. Please enter a different number:"
       end
@@ -54,20 +58,20 @@ class NycMuseums::CLI
 
     input = nil
     while input != "exit"
-      input = (gets.strip.to_i - 1)
-      if input == "list"
+      input = gets.strip
+      if input.to_i.to_s == input
+        NycMuseums::Museums.add_these_details(input.to_i - 1)
+        puts NycMuseums::Museums.all[input.to_i - 1].name
+        puts 
+        puts NycMuseums::Museums.all[input.to_i - 1].info
+        puts "Description:"
+        puts NycMuseums::Museums.all[input.to_i - 1].description  
+        puts "- - - - - "
+        puts 
+        puts "List the number of another museum you are interested in visiting, or type 'list' to see the list again or type exit:"
+        puts
+      elsif input == "list"
         list_museums
-      else
-          NycMuseums::Museums.add_these_details(input)
-          puts NycMuseums::Museums.all[input].name
-          puts 
-          puts NycMuseums::Museums.all[input].info
-          puts "Description:"
-          puts NycMuseums::Museums.all[input].description  
-          puts "- - - - - "
-          puts 
-          puts "List the number of another museum you are interested in visiting, or type 'list' to see the list again or type exit:"
-          puts
       end
     end
   end
